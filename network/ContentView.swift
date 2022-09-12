@@ -9,8 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+      NavigationView {
+        List {
+          ForEach(0..<5) { person in
+            NavigationLink {
+              Text("Link")
+            } label: {
+              Text("name")
+            }
+          }
+        }
+        .navigationTitle("Network")
+        .toolbar {
+          ToolbarItem(placement: .navigationBarTrailing) {
+            Button {
+              // agregar persona
+            } label: {
+              Image(systemName: "plus")
+            }
+            .foregroundColor(Color.black)
+          }
+        }
+      }
     }
 }
 
