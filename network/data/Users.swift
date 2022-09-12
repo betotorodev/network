@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Users: ObservableObject {
   @Published var users = [UserInfo]()
+  var example = [UserInfo(id: UUID(), name: "Beto", image: Image("user")), UserInfo(id: UUID(), name: "Tiby", image: Image("user"))]
 }

@@ -52,7 +52,7 @@ struct AddUserInfo: View {
       .navigationTitle("Add a person")
       .toolbar {
         Button("Save") {
-          let individualUser = UserInfo(id: UUID(), name: name)
+          let individualUser = UserInfo(id: UUID(), name: name, image: image)
           listOfUser.users.append(individualUser)
           dismiss()
         }

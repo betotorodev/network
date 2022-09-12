@@ -9,17 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
   @StateObject var listOfUser = Users()
-  @State private var image: Image?
   @State private var showingPersonView = false
+  @State private var defaultImage = Image(systemName: "person.circle")
   
     var body: some View {
       NavigationView {
         List {
-          ForEach(listOfUser.users) { person in
+          ForEach(listOfUser.example) { person in
             NavigationLink {
               Text("Link")
             } label: {
-              Text(person.name)
+              HStack {
+                if person.image != nil {
+                  person.image!
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 24, height: 24)
+                    .clipShape(Circle())
+                } else {
+                  defaultImage
+                }
+                Text(person.name)
+              }
             }
           }
         }
