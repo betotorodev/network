@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+  @StateObject var listOfUser = Users()
+  @State private var image: Image?
+  @State private var showingPersonView = false
+  
     var body: some View {
       NavigationView {
         List {
-          ForEach(0..<5) { person in
+          ForEach(listOfUser.users) { person in
             NavigationLink {
               Text("Link")
             } label: {
-              Text("name")
+              Text(person.name)
             }
           }
         }
@@ -23,12 +27,15 @@ struct ContentView: View {
         .toolbar {
           ToolbarItem(placement: .navigationBarTrailing) {
             Button {
-              // agregar persona
+              showingPersonView = true
             } label: {
               Image(systemName: "plus")
             }
             .foregroundColor(Color.black)
           }
+        }
+        .sheet(isPresented: $showingPersonView) {
+          AddUserInfo(listOfUser: listOfUser)
         }
       }
     }
@@ -36,6 +43,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+      ContentView()
     }
 }
